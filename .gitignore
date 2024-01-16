@@ -1,0 +1,7 @@
+*.o
+*.d
+*.a
+objs
+.vscode
+push_swap
+.DS_Store

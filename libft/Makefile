@@ -22,7 +22,7 @@ NEW			:= \r\033[K
 
 ### DIR ###
 GNL_SRC	= $(addprefix ft_gnl/, get_next_line.c get_next_line_utils.c)
-PRT_SRC	= $(addprefix ft_printf/, conversion.c conversion2.c)
+PRT_SRC	= $(addprefix ft_printf/, conversion.c conversion2.c ft_printf.c)
 OBJS	= ${SRCS:.c=.o} ${PRT_SRC:.c=.o} ${GNL_SRC:.c=.o}
 INCLD_DIR	= include/
 

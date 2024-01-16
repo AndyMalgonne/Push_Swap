@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 13:44:48 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/16 16:41:49 by amalgonn         ###   ########.fr       */
+/*   Created: 2024/01/16 16:14:12 by amalgonn          #+#    #+#             */
+/*   Updated: 2024/01/16 17:07:48 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-
-typedef struct s_stack
+static void	push(t_stack **a, t_stack **b)
 {
-	int				content;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}	t_stack;
+	*b = *a;
+	*a = (*a)->next;
+	(*a)->prev = NULL;
+	(*b)->next = NULL;
+	(*b)->prev = NULL;
+}
 
-#endif
+void	pa(t_stack **a, t_stack **b)
+{
+	push(a, b);
+	ft_printf("pa\n");
+}
 
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b)
+{
+	push(b, a);
+	ft_printf("pb\n");
+}
