@@ -9,6 +9,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
+SILENT_FLAG 	:= --no-print-directory --silent
 
 ### COLORS ###
 DEFAULT    	:= \033[0m
@@ -26,28 +27,29 @@ NEW			:= \r\033[K
 all: $(NAME)
 
 $(NAME): $(LIB) $(OBJS)
-	@ar rcs $(NAME) $(OBJS) $(LIB) -o $(NAME)
-	@echo "$(RED)††††† Compilated ††††††$(DEFAULT)"
+	@printf "$(NEW)$(PURPLE)[$(JP)] $(UGREEN)Building:$(DEFAULT)$(BWHITE) $@$(DEFAULT)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(INCLD_FLAG) -o $@
+	@printf "\n"
 
 %.o: %.c
 	@echo "$(CYAN)- Compiling $<$(DEFAULT)"
 	@${CC} ${CFLAGS} -c $< -o $@
 
 $(LIBFT):
-	@echo '* Making libft'
+	@echo '𓃰  Making libft 𓃰'
 	@make -C $(LIBFT_DIR)
 
 relib:
-	@echo '* Remaking libft'
-	@make re -C $(LIBFT_DIR)
+	@echo '𓃰   Remaking libft 𓃰'
+	@make re -C $(LIBFT_DIR) $(SILENT_FLAG)
 
 cleanlib:
-	@echo '* Cleaning libft'
-	@make clean -C $(LIBFT_DIR)
+	@echo '𓃰  Cleaning libft 𓃰'
+	@make clean -C $(LIBFT_DIR) $(SILENT_FLAG)
 
 fcleanlib:
-	@echo '* Cleaning libft'
-	@make fclean -C $(LIBFT_DIR)
+	@echo '𓃰  Cleaning libft 𓃰'
+	@make fclean -C $(LIBFT_DIR) $(SILENT_FLAG)
 
 clean:
 	@$(RM) $(OBJS) 
