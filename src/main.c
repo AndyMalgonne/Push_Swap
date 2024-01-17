@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/16 17:01:33 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:49:37 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,15 @@ int	main(int ac, char *av[])
 	while(++i < ac)
 		if (!check_arg(av[i], &a))
 			return (1);
-	pa(&a, &b);
+	rra(&a);
 	(print(a), print(b));
-	pa(&a, &b);
+	pb(&a, &b);
 	(print(a), print(b));
-	pa(&a, &b);
+	pb(&a, &b);
+	(print(a), print(b));
+	rrb(&a);
+	(print(a), print(b));
+	rrr(&a, &b);
 	(print(a), print(b));
 	(free_list(a), free_list(b));
 	return (0);

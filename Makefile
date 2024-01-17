@@ -46,6 +46,11 @@ LIB 		:= $(strip $(LIB))
 define SRC 	:=
 	main.c
 	push.c
+	ft_dlstadd_front.c
+	ft_dlstlast.c
+	swap.c
+	rotate.c
+	rrotate.c
 endef
 SRC 		:= $(strip $(SRC))
 

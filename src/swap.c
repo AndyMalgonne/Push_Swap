@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:14:12 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 11:29:32 by amalgonn         ###   ########.fr       */
+/*   Created: 2024/01/17 13:00:32 by amalgonn          #+#    #+#             */
+/*   Updated: 2024/01/17 13:36:13 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_stack **a, t_stack **b)
-{	
-	t_stack	*tmp;
+void	sa(t_stack **a)
+{
+	t_stack *tmp;
 
-	if(!*b)
-		return;
-	tmp = *b;
-	*b = (*b)->next;
-	if(*b)
-		(*b)->prev = NULL;
-	ft_dlstadd_front(a, tmp);
+	tmp = (*a)->next;
+	(*a)->prev = tmp;
+	tmp->prev = NULL;
+	(*a)->next = tmp->next;
+	tmp->next = (*a);
+	(*a) = tmp;
+	ft_printf("sa\n");
+}
+void	sb(t_stack **b)
+{
+	t_stack *tmp;
+
+	tmp = (*b)->next;
+	(*b)->prev = tmp;
+	tmp->prev = NULL;
+	(*b)->next = tmp->next;
+	tmp->next = (*b);
+	(*b) = tmp;
+	ft_printf("sb\n");
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b)
 {
-	push(a, b);
-	ft_printf("pa\n");
-}
-
-void	pb(t_stack **a, t_stack **b)
-{
-	push(b, a);
-	ft_printf("pb\n");
+	sa(a);
+	sb(b);
+	ft_printf("ss\n");
 }

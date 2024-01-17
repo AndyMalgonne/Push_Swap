@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 13:36:20 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 13:53:12 by amalgonn         ###   ########.fr       */
+/*   Created: 2024/01/17 14:10:43 by amalgonn          #+#    #+#             */
+/*   Updated: 2024/01/17 14:21:39 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_stack	*ft_dlstlast(t_stack *lst)
 {
-	new->next = *lst;
-	*lst = new;
+	if (!lst)
+		return (lst);
+	while (lst->next)
+		lst = lst ->next;
+	return (lst);
 }
