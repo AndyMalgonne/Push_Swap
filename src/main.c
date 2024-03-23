@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 17:25:12 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/03/23 17:54:34 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	main(int ac, char *av[])
 		error_arg();
 	if (check_sorted(a))
 		return (0);
-	pre_sort(a, b);
-	(print(a),print(b));
+	pre_sort(&a, &b);
+	(print (a), print (b));
 	(free_list(a), free_list(b));
 	return (0);
 }

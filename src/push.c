@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:14:12 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 15:35:25 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/03/23 17:29:50 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static void	push(t_stack **a, t_stack **b)
 
 void	pa(t_stack **a, t_stack **b)
 {
-	if (!*a)
+	if (!*b)
 		return ;
-	push(b, a);
+	push(a, b);
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
-	if (!*b)
+	if (!*a)
 		return ;
-	push(a, b);
+	push(b, a);
 	ft_printf("pb\n");
 }

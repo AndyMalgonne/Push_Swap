@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/03/23 17:25:44 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/03/23 17:54:51 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,29 +83,29 @@ static void	litle_sort(t_stack *a)
 		sort_three(&a);
 }
 
-void	pre_sort(t_stack *a, t_stack *b)
+void	pre_sort(t_stack **a, t_stack **b)
 {
 	size_t	size;
 	size_t	i;
 
 	i = 0;
-	size = stack_size(a);
-	assign_index(a);
-	litle_sort(a);
+	size = stack_size(*a);
+	assign_index(*a);
+	litle_sort(*a);
 	if (size > 3)
 	{
 		while (size - i > 3 && i < size / 2)
 		{
-			if (a->index < (int)size / 2)
+			if ((*a)->index < (int)size / 2)
 			{
 				i++;
-				pa(&a, &b);
+				pb(a, b);
 			}
 			else
-				ra(&a);
+				ra(a);
 		}
 		while (++i <= size - 3)
-			pa(&a, &b);
-		sort_three(&a);
+			pb(a, b);
+		sort_three(a);
 	}
 }
