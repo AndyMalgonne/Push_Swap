@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:54:15 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 14:27:11 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:35:39 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	ra(t_stack **a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	t_stack	*last;
 
+	if (!(*a))
+		return ;
 	tmp = (*a)->next;
-	last = ft_dlstlast(*a);
+	last = dlstlast(*a);
 	tmp->prev = NULL;
 	(*a)->next = NULL;
 	(*a)->prev = last;
@@ -29,11 +31,13 @@ void	ra(t_stack **a)
 
 void	rb(t_stack **b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	t_stack	*last;
 
+	if (!(*b))
+		return ;
 	tmp = (*b)->next;
-	last = ft_dlstlast(*b);
+	last = dlstlast(*b);
 	tmp->prev = NULL;
 	(*b)->next = NULL;
 	(*b)->prev = last;

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstadd_front.c                                 :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 11:01:39 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 12:38:02 by amalgonn         ###   ########.fr       */
+/*   Created: 2024/03/12 14:59:48 by andymalgonn       #+#    #+#             */
+/*   Updated: 2024/03/14 14:23:33 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_dlstadd_front(t_stack **lst, t_stack *new)
+void	error_arg(void)
 {
-	t_stack	*tmp;
-	
-	tmp = *lst;
-	new->next = tmp;
-	new->prev = NULL;
-	if(tmp)
-		tmp->prev = new;
-	*lst = new;
+	ft_printf("Error\n");
+	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 14:49:37 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:25:12 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,64 +36,57 @@ int	check_arg(char *av, t_stack **a)
 {
 	char	*tmp;
 	int		x;
+	char	**split;
+	int		i;
 
-	x = ft_atoi(av);
-	tmp = ft_itoa(x);
-	if (!tmp)
-		return (0);
-	if (ft_strncmp(tmp, av, ft_strlen(av)))
-		return (free(tmp), 0);
-	if (!init_stack(x, a))
-		return (free(tmp), 0);
-	return (free(tmp), 1);
+	split = ft_split(av, '"');
+	i = 0;
+	while (split[i])
+	{
+		x = ft_atoi(split[i]);
+		tmp = ft_itoa(x);
+		if (!tmp)
+			return (0);
+		if (ft_strncmp(tmp, split[i], ft_strlen(split[i])))
+			return (free(tmp), ft_fsplit(split), 0);
+		if (!init_stack(x, a))
+			return (free(tmp), ft_fsplit(split), 0);
+		free(tmp);
+		i++;
+	}
+	ft_fsplit(split);
+	return (1);
 }
 
-void	free_list(t_stack *x)
-{
-	t_stack	*tmp;
-
-	while (x)
-	{
-		tmp = x->next;
-		free(x);
-		x = tmp;
-	}
-}
-
-void	print(t_stack *x)
-{
-	while(x)
-	{
-		ft_printf("%d ", x->content);
-		x = x->next;
-	}
-	ft_putchar_fd('\n', 1);
+void print_stack(t_stack *a) {
+    while (a) {
+        printf("Content: %d, Index: %d\n", a->content, a->index);
+        a = a->next;
+    }
 }
 
 int	main(int ac, char *av[])
 {
 	t_stack	*a;
 	t_stack	*b;
-	int i;
+	int		i;
 
 	a = NULL;
 	b = NULL;
 	i = 0;
-	if(ac < 2)
-		return 0;
-	while(++i < ac)
+	if (ac < 2)
+		return (0);
+	while (++i < ac)
+	{
 		if (!check_arg(av[i], &a))
-			return (1);
-	rra(&a);
-	(print(a), print(b));
-	pb(&a, &b);
-	(print(a), print(b));
-	pb(&a, &b);
-	(print(a), print(b));
-	rrb(&a);
-	(print(a), print(b));
-	rrr(&a, &b);
-	(print(a), print(b));
+			error_arg();
+	}
+	if (check_dup(a))
+		error_arg();
+	if (check_sorted(a))
+		return (0);
+	pre_sort(a, b);
+	(print(a),print(b));
 	(free_list(a), free_list(b));
 	return (0);
 }

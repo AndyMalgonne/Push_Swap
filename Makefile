@@ -41,11 +41,13 @@ LIB 		:= ${strip ${LIB}}
 
 SRC := main.c \
 	push.c \
-	ft_dlstadd_front.c \
-	ft_dlstlast.c \
 	swap.c \
 	rotate.c \
-	rrotate.c 
+	rrotate.c \
+	check.c \
+	error.c \
+	utils.c \
+	sort.c
 
 SRC 		:= ${strip ${SRC}}
 OBJS 		:= ${patsubst %.c,${OBJS_DIR}/%.o,${SRC}}
@@ -75,7 +77,7 @@ clean:
 .PHONY: fclean
 fclean: clean 
 	@printf "${PURPLE}[${NAME}] ${RED}Obliterating ${DEFAULT}${NAME}\n"
-	@${RM} ${NAME} @${DEP_FLAGS}	
+	@${RM} ${NAME}	
 
 .PHONY: re
 re: fclean all

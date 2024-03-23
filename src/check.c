@@ -1,40 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:14:12 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 15:35:25 by andymalgonn      ###   ########.fr       */
+/*   Created: 2024/03/12 14:29:25 by andymalgonn       #+#    #+#             */
+/*   Updated: 2024/03/12 16:15:33 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_stack **a, t_stack **b)
+int	check_dup(t_stack *a)
 {
 	t_stack	*tmp;
 
-	tmp = *b;
-	*b = (*b)->next;
-	if (*b)
-		(*b)->prev = NULL;
-	dlstadd_front(a, tmp);
+	while (a)
+	{
+		tmp = a->next;
+		while (tmp)
+		{
+			if (a->content == tmp->content)
+				return (1);
+			tmp = tmp->next;
+		}
+		a = a->next;
+	}
+	return (0);
 }
 
-void	pa(t_stack **a, t_stack **b)
+int	check_sorted(t_stack *a)
 {
-	if (!*a)
-		return ;
-	push(b, a);
-	ft_printf("pa\n");
-}
+	int	i;
 
-void	pb(t_stack **a, t_stack **b)
-{
-	if (!*b)
-		return ;
-	push(a, b);
-	ft_printf("pb\n");
+	i = a->content;
+	while (a)
+	{
+		if (i > a->content)
+			return (0);
+		i = a->content;
+		a = a->next;
+	}
+	return (1);
 }

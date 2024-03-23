@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_fsplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 14:10:43 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/01/17 14:21:39 by amalgonn         ###   ########.fr       */
+/*   Created: 2024/03/23 15:12:06 by andymalgonn       #+#    #+#             */
+/*   Updated: 2024/03/23 15:14:58 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*ft_dlstlast(t_stack *lst)
+char	**ft_fsplit(char **split)
 {
-	if (!lst)
-		return (lst);
-	while (lst->next)
-		lst = lst ->next;
-	return (lst);
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free (split);
+	return (NULL);
 }

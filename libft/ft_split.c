@@ -33,17 +33,6 @@ static int	count_words(const char *s, char c)
 	return (i);
 }
 
-static char	**free_split(char **split)
-{
-	size_t	i;
-
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free (split);
-	return (NULL);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
@@ -64,7 +53,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[i[1]] = ft_substr(s, 0, i[0]);
 			if (!tab[i[1]++])
-				return (free_split(tab));
+				return (ft_fsplit(tab));
 		}
 		s = s + i[0];
 	}
