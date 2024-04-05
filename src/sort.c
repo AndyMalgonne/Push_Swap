@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/05 11:23:20 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/05 14:48:57 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,5 @@ void  repush(t_stack **a, t_stack **b)
 		pa(a, b);
 	if (biggest == 1)
 		ra(a);
+	(print(*a), print(*b));
 }
