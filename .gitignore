@@ -9,3 +9,4 @@ checker_mac
 push_swap_test.sh
 push_swap_tester
 traces.txt
+pushtest
