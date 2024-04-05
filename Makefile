@@ -47,7 +47,7 @@ SRC := main.c \
 	check.c \
 	error.c \
 	utils.c \
-	sort.c
+	sort.c 
 
 SRC 		:= ${strip ${SRC}}
 OBJS 		:= ${patsubst %.c,${OBJS_DIR}/%.o,${SRC}}

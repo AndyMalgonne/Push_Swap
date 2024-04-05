@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:44:48 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 17:51:09 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/03 16:21:51 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 int		check_dup(t_stack *a);
 int		check_sorted(t_stack *a);
-void	error_arg(void);
+void	error_arg_1(void);
+void	error_arg_2(void);
 void	free_list(t_stack *x);
 int		check_arg(char *av, t_stack **a);
 int		stack_size(t_stack *a);
@@ -49,6 +50,7 @@ void	sort_three(t_stack	**a);
 void	assign_index(t_stack *a);
 void	pre_sort(t_stack **a, t_stack **b);
 void	print(t_stack *x);
+void	repush(t_stack **a, t_stack **b);
 
 
 #endif

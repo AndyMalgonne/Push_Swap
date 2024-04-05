@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/03/23 17:54:51 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/05 08:48:04 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	sort_three(t_stack	**a)
 	int	two;
 	int	three;
 
+	 if (!(*a) || !(*a)->next || !(*a)->next->next)
+        return;
+	
 	one = (*a)->content;
 	two = (*a)->next->content;
 	three = (*a)->next->next->content;
@@ -92,20 +95,57 @@ void	pre_sort(t_stack **a, t_stack **b)
 	size = stack_size(*a);
 	assign_index(*a);
 	litle_sort(*a);
-	if (size > 3)
+	if(size > 3)
 	{
-		while (size - i > 3 && i < size / 2)
+	while (size - i > 3 && i < size / 2)
+	{
+		if ((*a)->index < (int)size / 2)
 		{
-			if ((*a)->index < (int)size / 2)
-			{
-				i++;
-				pb(a, b);
-			}
-			else
-				ra(a);
-		}
-		while (++i <= size - 3)
+			i++;
 			pb(a, b);
-		sort_three(a);
+		}
+		else
+			ra(a);
 	}
+	while (++i <= size - 3)
+		pb(a, b);
+	sort_three(a);
+	}
+}
+
+void  repush(t_stack **a, t_stack **b)
+{
+    int first_b = (*b)->content;
+	int biggest = 0;
+    t_stack *tmp = *a;
+    while (tmp) 
+	{
+        if (tmp->content > (*b)->content && (first_b == (*b)->content || tmp->content < first_b)) 
+            first_b = tmp->content;
+        tmp = tmp->next;
+    }
+	if (first_b == (*b)->content)
+	{
+		biggest = 1;
+		tmp = *a;
+		first_b = (*a)->content;
+		while (tmp) 
+		{
+    	    if (tmp->content > first_b) 
+			    first_b = tmp->content;
+     	  	tmp = tmp->next;
+  		}
+	}
+    tmp = *a;
+    while (tmp && tmp->content != first_b) 
+	{
+		ra(a);
+        tmp = *a;
+    }
+	if (biggest == 1)
+		ra(a);
+    if (tmp)
+		pa(a, b);
+	if (biggest == 1)
+		ra(a);
 }

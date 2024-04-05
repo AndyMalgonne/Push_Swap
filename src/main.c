@@ -6,7 +6,7 @@
 /*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 17:54:34 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/05 08:55:34 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	check_arg(char *av, t_stack **a)
 	char	**split;
 	int		i;
 
-	split = ft_split(av, '"');
+	split = ft_split(av, ' ');
+	if(!split || !split[0])
+	return(0);
 	i = 0;
 	while (split[i])
 	{
@@ -58,11 +60,37 @@ int	check_arg(char *av, t_stack **a)
 	return (1);
 }
 
-void print_stack(t_stack *a) {
-    while (a) {
+void print_stack(t_stack *a) 
+{
+    while (a) 
+	{
         printf("Content: %d, Index: %d\n", a->content, a->index);
         a = a->next;
     }
+}
+
+void	sort_in_position(t_stack **a)
+{
+	t_stack		*tmp;
+	size_t		smallest_pos;
+	size_t		len;
+
+	tmp = *a;
+	len = 0;
+	smallest_pos = 0;
+	while (tmp)
+	{
+		if (tmp->index == 0)
+			smallest_pos = len;
+		len++;
+		tmp = tmp->next;
+	}
+	if ((len + 1) / 2 < smallest_pos)
+		while (smallest_pos++ < len)
+			rra(a);
+	else
+		while (smallest_pos-- > 0)
+			ra(a);
 }
 
 int	main(int ac, char *av[])
@@ -75,18 +103,23 @@ int	main(int ac, char *av[])
 	b = NULL;
 	i = 0;
 	if (ac < 2)
-		return (0);
+		return(0);
 	while (++i < ac)
 	{
 		if (!check_arg(av[i], &a))
-			error_arg();
+			error_arg_1();
 	}
 	if (check_dup(a))
-		error_arg();
+		error_arg_2();
 	if (check_sorted(a))
 		return (0);
 	pre_sort(&a, &b);
-	(print (a), print (b));
+	while (b)
+		repush(&a, &b);
+	if (!check_sorted(a))
+		sort_in_position(&a);
+	// print(a);
+	// print(b);
 	(free_list(a), free_list(b));
 	return (0);
 }

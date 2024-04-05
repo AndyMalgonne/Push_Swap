@@ -5,3 +5,7 @@ objs
 .vscode
 push_swap
 .DS_Store
+checker_mac
+push_swap_test.sh
+push_swap_tester
+traces.txt
