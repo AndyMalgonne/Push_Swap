@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/16 11:13:38 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:19:58 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	main(int ac, char *av[])
 		error_arg();
 	if (check_sorted(a))
 		return (free_list(a), free_list(b), 0);
-	litle_sort(&a);
 	if(check_sorted(a))
 		return (free_list(a), 0);
 	pre_sort(&a, &b);
