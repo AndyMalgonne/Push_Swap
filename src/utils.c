@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:22:28 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/17 10:01:49 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:25:46 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	free_list(t_stack *x)
 
 void	print(t_stack *x)
 {
-	t_stack *tmp = x;
-	
+	t_stack	*tmp;
+
+	tmp = x;
 	while (tmp)
 	{
 		ft_printf("%d ", tmp->content);

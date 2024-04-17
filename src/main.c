@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/17 11:43:15 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:33:34 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	check_arg(char *av, t_stack **a)
 	int		i;
 
 	split = ft_split(av, ' ');
-	if(!split || !split[0])
-	return(ft_fsplit(split), 0);
+	if (!split || !split[0])
+		return (ft_fsplit(split), 0);
 	i = 0;
 	while (split[i])
 	{
@@ -58,15 +58,6 @@ int	check_arg(char *av, t_stack **a)
 	}
 	ft_fsplit(split);
 	return (1);
-}
-
-void print_stack(t_stack *a) 
-{
-    while (a) 
-	{
-        printf("Content: %d, Index: %d\n", a->content, a->index);
-        a = a->next;
-    }
 }
 
 void	sort_in_position(t_stack **a)
@@ -93,34 +84,39 @@ void	sort_in_position(t_stack **a)
 			ra(a);
 }
 
+void	push_swap(int ac, char *av[], t_stack **a, t_stack **b)
+{
+	int	i;
+
+	i = 0;
+	if (ac < 2)
+		return ;
+	while (++i < ac)
+	{
+		if (!check_arg(av[i], a))
+			(free_list(*a), error_arg());
+	}
+	if (check_dup(*a))
+		error_arg();
+	if (check_sorted(*a))
+		return (free_list(*a), free_list(*b));
+	if (check_sorted(*a))
+		return (free_list(*a));
+	pre_sort(a, b);
+	while (*b)
+		repush(a, b);
+	if (!check_sorted(*a))
+		sort_in_position(a);
+	(free_list(*a), free_list(*b));
+}
+
 int	main(int ac, char *av[])
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		i;
 
 	a = NULL;
 	b = NULL;
-	i = 0;
-	if (ac < 2)
-		return(0);
-	while (++i < ac)
-	{
-		if (!check_arg(av[i], &a))
-		(free_list(a), error_arg());	
-	}
-	if (check_dup(a))
-		error_arg();
-	if (check_sorted(a))
-		return (free_list(a), free_list(b), 0);
-	if(check_sorted(a))
-		return (free_list(a), 0);
-	pre_sort(&a, &b);
-	while (b)
-		repush(&a, &b);
-	if (!check_sorted(a))
-		sort_in_position(&a);
-	(print_stack(a), print_stack(b));
-	(free_list(a), free_list(b));
+	push_swap (ac, av, &a, &b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/17 11:41:25 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:41:26 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	sort_three(t_stack	**a)
 	int	three;
 
 	if (!(*a) || !(*a)->next || !(*a)->next->next)
-        return ;
-	
+		return ;
 	one = (*a)->content;
 	two = (*a)->next->content;
 	three = (*a)->next->next->content;
@@ -108,38 +107,9 @@ void	pre_sort(t_stack **a, t_stack **b)
 				ra(a);
 		}
 		while (++i <= size - 3)
-			{
-				pb(a, b);
-			}
+			pb(a, b);
 		sort_three(a);
 	}
-}
-
-
-void check_and_rra(t_stack **a)
-{
-    t_stack *tmp = *a;
-    int smallest = tmp->index;
-    int last;
-
-    while (tmp != NULL)
-    {
-        if (tmp->index < smallest)
-        {
-            smallest = tmp->index;
-        }
-        tmp = tmp->next;
-    }
-    tmp = *a;
-    while (tmp->next != NULL)
-    {
-        tmp = tmp->next;
-    }
-    last = tmp->index;
-    if (last == smallest)
-    {
-        rra(a);
-    }
 }
 
 void  repush(t_stack **a, t_stack **b)

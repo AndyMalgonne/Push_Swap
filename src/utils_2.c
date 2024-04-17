@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:29:25 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/03/12 16:15:33 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/17 14:42:07 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,42 @@ int	check_sorted(t_stack *a)
 		a = a->next;
 	}
 	return (1);
+}
+
+void	check_and_rra(t_stack **a)
+{
+	t_stack	*tmp;
+	int		smallest;
+	int		last;
+
+	tmp = *a;
+	smallest = tmp->index;
+	last = 0;
+	while (tmp != NULL)
+	{
+		if (tmp->index < smallest)
+			smallest = tmp->index;
+		tmp = tmp->next;
+	}
+	tmp = *a;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	last = tmp->index;
+	if (last == smallest)
+		rra(a);
+}
+
+void	error_arg(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
+void	print_stack(t_stack *a)
+{
+	while (a)
+	{
+		printf("Content: %d, Index: %d\n", a->content, a->index);
+		a = a->next;
+	}
 }

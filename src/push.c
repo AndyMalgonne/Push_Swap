@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:14:12 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/17 11:50:08 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:47:39 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	push(t_stack **a, t_stack **b)
 
 	tmp = *b;
 	*b = (*b)->next;
+	dlstadd_front(a, tmp);
 	if (*b)
 		(*b)->prev = NULL;
-	dlstadd_front(a, tmp);
 }
 
 void	pa(t_stack **a, t_stack **b)

@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:36:14 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/17 11:46:34 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:42:35 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	rra(t_stack **a)
 
 	if (!(*a))
 		return ;
-	
-	if((*a) && (*a)->next)
+	if ((*a) && (*a)->next)
 	{
 	last = dlstlast(*a);
 	tmp = last->prev;
@@ -29,7 +28,7 @@ void	rra(t_stack **a)
 	tmp->next = NULL;
 	(*a)->prev = last;
 	(*a) = last;
-	ft_printf("rra\n");
+		ft_printf("rra\n");
 	}
 }
 

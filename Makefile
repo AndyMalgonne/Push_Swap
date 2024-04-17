@@ -44,9 +44,8 @@ SRC := main.c \
 	swap.c \
 	rotate.c \
 	rrotate.c \
-	check.c \
-	error.c \
 	utils.c \
+	utils_2.c \
 	sort.c 
 
 SRC 		:= ${strip ${SRC}}
