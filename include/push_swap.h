@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:44:48 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/16 11:02:36 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 10:55:10 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	sort_three(t_stack	**a);
 void	assign_index(t_stack *a);
 void	pre_sort(t_stack **a, t_stack **b);
 void	print(t_stack *x);
-void	repush(t_stack **a, t_stack **b);
-void	litle_sort(t_stack **a);
-void	check_and_rra(t_stack **a);
-
+void repush(t_stack **a, t_stack **b);
+void litle_sort(t_stack **a);
+void check_and_rra(t_stack **a);
+void print_stack(t_stack *a);
 
 #endif

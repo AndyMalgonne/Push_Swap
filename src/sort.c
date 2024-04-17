@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/16 13:42:30 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:41:25 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ void	pre_sort(t_stack **a, t_stack **b)
 				ra(a);
 		}
 		while (++i <= size - 3)
-			pb(a, b);
+			{
+				pb(a, b);
+			}
 		sort_three(a);
 	}
 }
@@ -144,6 +146,8 @@ void  repush(t_stack **a, t_stack **b)
 {
     int first_b = (*b)->index;
 	int biggest = 0;
+	int size = stack_size(*a);
+	int count = 0;
     t_stack *tmp = *a;
     while (tmp) 
 	{
@@ -164,16 +168,31 @@ void  repush(t_stack **a, t_stack **b)
   		}
 	}
     tmp = *a;
-    while (tmp && tmp->index != first_b) 
+	while (tmp && tmp->index != first_b) 
 	{
-		ra(a);
-        tmp = *a;
+		count++;
+        tmp = tmp->next;
+    }
+	tmp = *a;
+	while (tmp && tmp->index != first_b) 
+	{
+		if(count <= size / 2)
+		{
+			ra(a);
+       		tmp = *a;
+		}
+		else
+		{
+			rra(a);
+			tmp = *a;
+		}
     }
 	if (biggest == 1)
 		ra(a);
     if (tmp)
-		pa(a, b);
+			pa(a, b);
 	if (biggest == 1)
 		ra(a);
-	check_and_rra(a);
+	if(size > 3)
+		check_and_rra(a);
 }

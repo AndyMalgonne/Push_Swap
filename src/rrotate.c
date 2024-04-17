@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rrotate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:36:14 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/03/23 15:35:49 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/17 11:46:34 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	rra(t_stack **a)
 
 	if (!(*a))
 		return ;
+	
+	if((*a) && (*a)->next)
+	{
 	last = dlstlast(*a);
 	tmp = last->prev;
 	last->prev = NULL;
@@ -27,6 +30,7 @@ void	rra(t_stack **a)
 	(*a)->prev = last;
 	(*a) = last;
 	ft_printf("rra\n");
+	}
 }
 
 void	rrb(t_stack **b)

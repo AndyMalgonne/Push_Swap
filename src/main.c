@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/16 13:19:58 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:43:15 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int	main(int ac, char *av[])
 		repush(&a, &b);
 	if (!check_sorted(a))
 		sort_in_position(&a);
+	(print_stack(a), print_stack(b));
 	(free_list(a), free_list(b));
 	return (0);
 }

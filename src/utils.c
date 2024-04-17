@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:22:28 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/03/23 15:34:17 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/17 10:01:49 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ void	free_list(t_stack *x)
 
 void	print(t_stack *x)
 {
-	while (x)
+	t_stack *tmp = x;
+	
+	while (tmp)
 	{
-		ft_printf("%d ", x->content);
-		x = x->next;
+		ft_printf("%d ", tmp->content);
+		tmp = tmp->next;
 	}
 	ft_putchar_fd('\n', 1);
 }
