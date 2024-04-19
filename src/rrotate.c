@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rrotate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:36:14 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/18 10:13:11 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/19 15:01:27 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ void	rrb(t_stack **b)
 
 	if (!(*b))
 		return ;
-	printf("ptr %p\n", *b);
-	last = dlstlast(*b);
-	tmp = last->prev;
-	last->prev = NULL;
-	last->next = (*b);
-	tmp->next = NULL;
-	(*b)->prev = last;
-	(*b) = last;
-	ft_printf("rrb\n");
+	if ((*b) && (*b)->next)
+	{
+		last = dlstlast(*b);
+		tmp = last->prev;
+		last->prev = NULL;
+		last->next = (*b);
+		tmp->next = NULL;
+		(*b)->prev = last;
+		(*b) = last;
+		ft_printf("rrb\n");
+	}
 }
 
 void	rrr(t_stack **a, t_stack **b)

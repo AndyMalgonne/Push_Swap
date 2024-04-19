@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:44:48 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/18 11:10:16 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/19 14:12:35 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef struct s_stack
 	struct s_stack	*prev;
 	struct s_stack	*nbr;
 }	t_stack;
+
+typedef struct s_dir
+{
+	int	up;
+	int	move;
+	int	biggest;
+}	t_dir;
 
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
@@ -51,7 +58,6 @@ void	pre_sort(t_stack **a, t_stack **b);
 void	print(t_stack *x);
 void	repush(t_stack **a, t_stack **b);
 void	litle_sort(t_stack **a);
-void	check_and_rra(t_stack **a);
 void	print_stack(t_stack *a);
 
 #endif

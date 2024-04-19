@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/19 13:24:15 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/19 15:33:22 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,93 +65,124 @@ void	pre_sort(t_stack **a, t_stack **b)
 	}
 }
 
-void	ra_or_rra(t_stack **a, int first_b)
+void	ra_or_rra(t_stack *x, t_dir *dir_x, int index)
 {
-	t_stack	*tmp;
-	int		up;
-	int		down;
+	t_dir	tmp;
 
-	up = 0;
-	down = 0;
-	tmp = *a;
-	while (tmp->next)
+	dir_x->up = 0;
+	dir_x->move = 0;
+	tmp.up = 1;
+	tmp.move = 1;
+	tmp.biggest = dir_x->biggest;
+	while (x->next)
 	{
-		if (tmp->index == first_b)
+		if (x->index == index)
 			break ;
-		up++;
-		tmp = tmp->next;
+		dir_x->move++;
+		x = x->next;
 	}
-	while (tmp->next)
-		tmp = tmp->next;	
-	while(tmp->prev)
+	while (x->next)
+		x = x->next;
+	while (x->prev)
 	{
-		if(tmp->index == first_b)
+		if (x->index == index)
 			break ;
-		down++;
-		tmp = tmp->prev;
+		tmp.move++;
+		x = x->prev;
 	}
-	if (up >= down)
+	if (dir_x->move > tmp.move)
+		*dir_x = tmp;
+}
+
+void	shift_list(t_stack **x, t_dir *dir, int is_a)
+{
+	if (!dir->up)
 	{
-		while (up--)
-			ra(a);
+		while (dir->move--)
+		{
+			if (is_a)
+				ra(x);
+			else
+				rb(x);
+		}
 	}
 	else
 	{
-		while (down--)
-			rra(a);		
+		while (dir->move--)
+		{
+			if (is_a)
+				rra(x);
+			else
+				rrb(x);
+		}
 	}
-
 }
 
-int	find_location(t_stack **a, t_stack **b, int *biggest)
+int	find_location(t_stack *a, int index, int *biggest)
 {
 	t_stack	*tmp;
 	int		first_b;
 
-	tmp = *a;
-	first_b = (*b)->index;
+	tmp = a;
+	first_b = -1;
+	while (a)
+	{
+		if (a->index > index && (first_b == -1 || first_b > a->index))
+			first_b = a->index;
+		a = a->next;
+	}
+	*biggest = 0;
+	if (first_b == -1)
+		*biggest = 1;
+	if (*biggest == 0)
+		return (first_b);
+	first_b = tmp->index;
 	while (tmp)
 	{
-		if (tmp->index > (*b)->index && (first_b == (*b)->index
-				|| tmp->index < first_b))
+		if (tmp->index > first_b)
 			first_b = tmp->index;
 		tmp = tmp->next;
-	}
-	if (first_b == (*b)->index)
-	{
-		*biggest = 1;
-		tmp = *a;
-		first_b = (*a)->index;
-		while (tmp)
-		{
-			if (tmp->index > first_b)
-				first_b = tmp->index;
-			tmp = tmp->next;
-		}
 	}
 	return (first_b);
 }
 
+void	lower_cost(t_stack *a, t_stack *b, t_dir *dir_a, t_dir *dir_b)
+{
+	t_stack	*tmp;
+	t_dir	lower;
+	int		index;
+
+	tmp = b;
+	lower.move = -1;
+	while (b)
+	{
+		ra_or_rra(tmp, dir_b, b->index);
+		ra_or_rra(a, dir_a, find_location(a, b->index, &dir_a->biggest));
+		if (lower.move == -1 || dir_b->move + dir_a->move < lower.move)
+		{
+			lower.move = dir_b->move + dir_a->move;
+			index = b->index;
+		}
+		b = b->next;
+	}
+	ra_or_rra(tmp, dir_b, index);
+	ra_or_rra(a, dir_a, find_location(a, index, &dir_a->biggest));
+}
+
 void	repush(t_stack **a, t_stack **b)
 {
-	int		first_b;
-	int		biggest;
-	int		size;
-	t_stack	*tmp;
+	t_dir	dir_a;
+	t_dir	dir_b;
 
-	first_b = (*b)->index;
-	biggest = 0;
-	size = stack_size(*a);
-	tmp = *a;
-	first_b = find_location(a, b, &biggest);
-	tmp = *a;
-	ra_or_rra(a, first_b);
-	if (biggest == 1)
-		ra(a);
-	if (tmp)
+	while (*b)
+	{
+		dir_a.biggest = 0;
+		dir_b.biggest = 0;
+		lower_cost(*a, *b, &dir_a, &dir_b);
+		shift_list(a, &dir_a, 1);
+		shift_list(b, &dir_b, 0);
 		pa(a, b);
-	if (biggest == 1)
-		ra(a);
-	if (size > 3)
-		check_and_rra(a);
+		if (dir_a.biggest)
+			sa(a);
+	}
 }
