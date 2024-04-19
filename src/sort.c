@@ -3,50 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/17 14:41:26 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:19:12 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sort_two(t_stack **a)
-{
-	int	one;
-	int	two;
-
-	one = (*a)->content;
-	two = (*a)->next->content;
-	if (two < one)
-		sa(a);
-}
-
-void	sort_three(t_stack	**a)
-{
-	int	one;
-	int	two;
-	int	three;
-
-	if (!(*a) || !(*a)->next || !(*a)->next->next)
-		return ;
-	one = (*a)->content;
-	two = (*a)->next->content;
-	three = (*a)->next->next->content;
-	if (one > two && one > three)
-	{
-		ra(a);
-		sort_two(a);
-	}
-	else if (two > one && two > three)
-	{
-		rra(a);
-		sort_two(a);
-	}
-	else if (three > one && three > two)
-		sort_two(a);
-}
 
 void	assign_index(t_stack *a)
 {
@@ -72,17 +36,6 @@ void	assign_index(t_stack *a)
 		}
 		highest->index = size;
 	}
-}
-
-void	litle_sort(t_stack **a)
-{
-	size_t	size;
-
-	size = stack_size(*a);
-	if (size == 2)
-		sort_two(a);
-	else if (size == 3)
-		sort_three(a);
 }
 
 void	pre_sort(t_stack **a, t_stack **b)
@@ -112,57 +65,85 @@ void	pre_sort(t_stack **a, t_stack **b)
 	}
 }
 
-void  repush(t_stack **a, t_stack **b)
+void	ra_or_rra(t_stack **a, int first_b, int size)
 {
-    int first_b = (*b)->index;
-	int biggest = 0;
-	int size = stack_size(*a);
-	int count = 0;
-    t_stack *tmp = *a;
-    while (tmp) 
-	{
-        if (tmp->index > (*b)->index && (first_b == (*b)->index || tmp->index < first_b)) 
-            first_b = tmp->index;
-        tmp = tmp->next;
-    }
-	if (first_b == (*b)->index)
-	{
-		biggest = 1;
-		tmp = *a;
-		first_b = (*a)->index;
-		while (tmp) 
-		{
-    	    if (tmp->index > first_b) 
-			    first_b = tmp->index;
-     	  	tmp = tmp->next;
-  		}
-	}
-    tmp = *a;
-	while (tmp && tmp->index != first_b) 
+	t_stack	*tmp;
+	int		count;
+
+	tmp = *a;
+	count = 0;
+	while (tmp && tmp->index != first_b)
 	{
 		count++;
-        tmp = tmp->next;
-    }
+		tmp = tmp->next;
+	}
+
 	tmp = *a;
-	while (tmp && tmp->index != first_b) 
+	while (tmp && tmp->index != first_b)
 	{
-		if(count <= size / 2)
+		if (count <= size / 2)
 		{
 			ra(a);
-       		tmp = *a;
+			tmp = *a;
 		}
 		else
 		{
 			rra(a);
 			tmp = *a;
 		}
-    }
+	}
+}
+
+int	find_location(t_stack **a, t_stack **b, int *biggest)
+{
+	t_stack	*tmp;
+	int		first_b;
+
+	tmp = *a;
+	first_b = (*b)->index;
+	while (tmp)
+	{
+		if (tmp->index > (*b)->index && (first_b == (*b)->index
+				|| tmp->index < first_b))
+			first_b = tmp->index;
+		tmp = tmp->next;
+	}
+	if (first_b == (*b)->index)
+	{
+		*biggest = 1;
+		tmp = *a;
+		first_b = (*a)->index;
+		while (tmp)
+		{
+			if (tmp->index > first_b)
+				first_b = tmp->index;
+			tmp = tmp->next;
+		}
+	}
+	return (first_b);
+}
+
+void	repush(t_stack **a, t_stack **b)
+{
+	int		first_b;
+	int		biggest;
+	int		size;
+	t_stack	*tmp;
+
+	first_b = (*b)->index;
+	biggest = 0;
+	size = stack_size(*a);
+	tmp = *a;
+	first_b = find_location(a, b, &biggest);
+
+	tmp = *a;
+	ra_or_rra(a, first_b, size);
 	if (biggest == 1)
 		ra(a);
-    if (tmp)
-			pa(a, b);
+	if (tmp)
+		pa(a, b);
 	if (biggest == 1)
 		ra(a);
-	if(size > 3)
+	if (size > 3)
 		check_and_rra(a);
 }
