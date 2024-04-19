@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
+/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/18 11:19:12 by andymalgonn      ###   ########.fr       */
+/*   Updated: 2024/04/19 07:48:47 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ra_or_rra(t_stack **a, int first_b, int size)
 		count++;
 		tmp = tmp->next;
 	}
-
 	tmp = *a;
 	while (tmp && tmp->index != first_b)
 	{
