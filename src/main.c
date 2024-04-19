@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/19 10:15:17 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:21:53 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	push_swap(int ac, char *av[], t_stack **a, t_stack **b)
 		repush(a, b);
 	if (!check_sorted(*a))
 		sort_in_position(a);
+	(print(*a), print(*b));
 	(free_list(*a), free_list(*b));
 }
 

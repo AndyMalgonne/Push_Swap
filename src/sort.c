@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andymalgonne <andymalgonne@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/19 08:36:17 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:24:15 by andymalgonn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,42 @@ void	pre_sort(t_stack **a, t_stack **b)
 	}
 }
 
-void	ra_or_rra(t_stack **a, int first_b, int size)
+void	ra_or_rra(t_stack **a, int first_b)
 {
 	t_stack	*tmp;
-	int		count;
+	int		up;
+	int		down;
 
+	up = 0;
+	down = 0;
 	tmp = *a;
-	count = 0;
-	while (tmp && tmp->index != first_b)
+	while (tmp->next)
 	{
-		count++;
+		if (tmp->index == first_b)
+			break ;
+		up++;
 		tmp = tmp->next;
 	}
-	tmp = *a;
-	while (tmp && tmp->index != first_b)
+	while (tmp->next)
+		tmp = tmp->next;	
+	while(tmp->prev)
 	{
-		if (count <= size / 2)
-		{
-			ra(a);
-			tmp = *a;
-		}
-		else
-		{
-			rra(a);
-			tmp = *a;
-		}
+		if(tmp->index == first_b)
+			break ;
+		down++;
+		tmp = tmp->prev;
 	}
+	if (up >= down)
+	{
+		while (up--)
+			ra(a);
+	}
+	else
+	{
+		while (down--)
+			rra(a);		
+	}
+
 }
 
 int	find_location(t_stack **a, t_stack **b, int *biggest)
@@ -135,7 +145,7 @@ void	repush(t_stack **a, t_stack **b)
 	tmp = *a;
 	first_b = find_location(a, b, &biggest);
 	tmp = *a;
-	ra_or_rra(a, first_b, size);
+	ra_or_rra(a, first_b);
 	if (biggest == 1)
 		ra(a);
 	if (tmp)
