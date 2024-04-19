@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:28:31 by andymalgonn       #+#    #+#             */
-/*   Updated: 2024/04/19 07:48:47 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/19 08:36:17 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	repush(t_stack **a, t_stack **b)
 	size = stack_size(*a);
 	tmp = *a;
 	first_b = find_location(a, b, &biggest);
-
 	tmp = *a;
 	ra_or_rra(a, first_b, size);
 	if (biggest == 1)
