@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:44:48 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/19 14:12:35 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:06:55 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct s_dir
 	int	biggest;
 }	t_dir;
 
+// Moves
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 void	dlstadd_front(t_stack **lst, t_stack *new);
-t_stack	*dlstlast(t_stack *lst);
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
@@ -46,18 +46,29 @@ void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 int		check_dup(t_stack *a);
-int		check_sorted(t_stack *a);
+t_stack	*dlstlast(t_stack *lst);
+
+// Sort 
+void	sort_two(t_stack **a);
+void	sort_three(t_stack	**a);
+void	pre_sort(t_stack **a, t_stack **b);
+void	assign_index(t_stack *a);
+void	litle_sort(t_stack **a);
+void	cost_and_sort(t_stack **a, t_stack **b);
+
+// Cost
+void	lower_cost(t_stack *a, t_stack *b, t_dir *dir_a, t_dir *dir_b);
+void	ra_or_rra(t_stack *x, t_dir *dir_x, int index);
+int		find_location(t_stack *a, int index, int *biggest);
+void	shift_list(t_stack **x, t_dir *dir, int is_a);
+
+// Error_And_Check
 void	error_arg(void);
+int		check_sorted(t_stack *a);
 void	free_list(t_stack *x);
 int		check_arg(char *av, t_stack **a);
 int		stack_size(t_stack *a);
-void	sort_two(t_stack **a);
-void	sort_three(t_stack	**a);
-void	assign_index(t_stack *a);
-void	pre_sort(t_stack **a, t_stack **b);
 void	print(t_stack *x);
-void	repush(t_stack **a, t_stack **b);
-void	litle_sort(t_stack **a);
 void	print_stack(t_stack *a);
 
 #endif

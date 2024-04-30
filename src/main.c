@@ -6,7 +6,7 @@
 /*   By: amalgonn <amalgonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:55:25 by amalgonn          #+#    #+#             */
-/*   Updated: 2024/04/19 13:52:10 by amalgonn         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:07:32 by amalgonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,9 @@ void	push_swap(int ac, char *av[], t_stack **a, t_stack **b)
 	if (check_sorted(*a))
 		return (free_list(*a));
 	pre_sort(a, b);
-	repush(a, b);
+	cost_and_sort(a, b);
 	if (!check_sorted(*a))
 		sort_in_position(a);
-	(print(*a), print(*b));
 	(free_list(*a), free_list(*b));
 }
 

@@ -47,7 +47,8 @@ SRC := main.c \
 	utils.c \
 	utils_2.c \
 	sort.c \
-	sort_2.c \
+	little_sort.c \
+	cost.c \
 
 SRC 		:= ${strip ${SRC}}
 OBJS 		:= ${patsubst %.c,${OBJS_DIR}/%.o,${SRC}}
